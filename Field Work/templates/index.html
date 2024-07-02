@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Define a color palette */
+        :root {
+            --primary-color: #000500; 
+            --secondary-color: #e74c3c; 
+            --background-color: #946846; 
+            --sidebar-bg-color: #F1DABF; 
+            --footer-bg-color: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: var(--background-color);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            font-family: 'Lobster', cursive;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .main {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .sidebar {
+            background-color: var(--sidebar-bg-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition for popup and shadow */
+        }
+
+        .sidebar:hover {
+            transform: scale(1.05); /* Scale up on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+            font-family: 'Pacifico', cursive;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            color: var(--secondary-color);
+        }
+
+        .content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* Reduced transition duration for quicker animation */
+        }
+
+        .content:hover {
+            transform: scale(1.02); /* Slightly smaller scale on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow effect on hover */
+        }
+
+        .content h2 {
+            margin-top: 0;
+            font-family: 'Pacifico', cursive;
+        }
+
+        .content p {
+            line-height: 1.5;
+        }
+
+        .content img {
+            max-width: 80%;
+            max-height: 50%;
+            display:block;
+            margin: auto; /* Center-align horizontally and vertically */
+            border-radius: 10px; /* Add curved edges */
+            margin-bottom: 20px; /* Add a 20px gap between text and image */
+        }
+
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--footer-bg-color);
+            color: white;
+            padding: 20px;
+        }
+
+        /* Button Styles */
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Slideshow Animation */
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        /* Slideshow Caption Styles */
+        .caption-container {
+            position: relative;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+        }
+
+        .caption {
+            display: block;
+            margin: auto;
+        }
+
+        /* Slideshow Animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 3s;
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 0.4;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Koffee Brewz &copy;</div>
+        <div class="nav">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="sidebar">
+            <h3>Latest News</h3><br>
+            <ul>
+                <li><a href="#">Company wins award for innovation</a></li><br>
+                <li><a href="#">New product launch coming soon</a></li><br>
+                <li><a href="#">CEO interviewed by leading magazine</a></li><br>
+                <li><a href="#">Customer testimonials updated</a></li><br>
+                <li><a href="#">Join our team - we are hiring</a></li><br>
+            </ul>
+        </div>
+        <div class="content">
+        <!-- Slideshow Container -->
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img class="slideshow-img" src="{{ url_for('static', filename='image1.jpeg') }}" alt="Slide 1">
+            </div>
+            <div class="mySlides fade">
+                <img class="slideshow-img" src="{{ url_for('static', filename='image2.jpeg') }}" alt="Slide 2">
+            </div>
+            <div class="mySlides fade">
+                <img class="slideshow-img" src="{{ url_for('static', filename='image3.jpeg') }}" alt="Slide 3">
+            </div>
+        </div>
+        <h2>Welcome to Koffee Brewz</h2><br>
+        <p>We are a leading company in the field of perfecting the art of coffee. We offer coffee machines & coffee bean, We have dedication in our line of work. We are committed to preserve he original taste of brewed coffee.</p>
+        <p>If you want to know more about us, please visit our About page. If you are interested in our services, please visit our Services page. If you have any questions or feedback, please visit our Contact page. We would love to hear from you.</p><br>
+        <button class="btn">Learn More</button>
+    </div>
+</div>
+    <div class="footer">
+        &copy; Koffee Brewz 2023. All rights reserved.
+    </div>
+
+    <!-- JavaScript for Slideshow -->
+    <script>
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 6000); // Change image every 6 seconds
+        }
+    </script>
+</body>
+</html>
